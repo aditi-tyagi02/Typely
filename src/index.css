@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  :root[data-theme='dark'] {
+    --c-bg: 11 18 32;
+    --c-surface: 17 27 46;
+    --c-raised: 26 38 63;
+    --c-line: 39 53 84;
+    --c-text: 241 245 249;
+    --c-muted: 139 153 178;
+    --c-accent: 250 204 21;
+    --c-accent-fg: 17 24 39;
+    --c-correct: 74 222 128;
+    --c-incorrect: 248 113 113;
+  }
+
+  :root[data-theme='light'] {
+    --c-bg: 248 247 242;
+    --c-surface: 255 255 255;
+    --c-raised: 240 238 230;
+    --c-line: 221 217 204;
+    --c-text: 28 28 32;
+    --c-muted: 100 100 110;
+    --c-accent: 180 83 9;
+    --c-accent-fg: 255 255 255;
+    --c-correct: 22 128 61;
+    --c-incorrect: 185 28 28;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-accent));
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .caret {
+    @apply relative;
+  }
+
+  .caret::before {
+    content: '';
+    @apply absolute -left-px top-[12%] h-[76%] w-[2px] rounded-full bg-accent animate-blink;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
